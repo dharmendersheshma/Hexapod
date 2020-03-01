@@ -161,7 +161,6 @@ void loop() {
   }
   // Rotate left
   if (m == 3) {
-    moveHeadLeft();
     moveLeg1();
     moveLeg3();
     moveLeg5Left();
@@ -173,7 +172,6 @@ void loop() {
   }
   // Rotate right
   if (m == 4) {
-    moveHeadRight();
     moveLeg1Right();
     moveLeg3Right();
     moveLeg5();
