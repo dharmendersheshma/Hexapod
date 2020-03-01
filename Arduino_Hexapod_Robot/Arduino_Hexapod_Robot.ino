@@ -72,6 +72,8 @@ void setup() {
   pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
   pinMode(echoPin, INPUT); // Sets the echoPin as an Input
   pinMode(ledB, OUTPUT);
+
+  //Allocate servos to pins using attach fn
   
   // Leg 4
   s10.attach(31);
@@ -211,6 +213,8 @@ void loop() {
     }
     */
   }  
+  delay(speedV);
+}
   
 
 void moveLeg1() {
