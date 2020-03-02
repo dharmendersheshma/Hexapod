@@ -38,15 +38,33 @@ int i1L1 = 0;
 int i2L1 = 0;
 int i3L1 = 0;
 int i4L1 = 0;
-int i5L1 = 0;
-int i6L1 = 0;
 
 int i1L2 = 0;
 int i2L2 = 0;
 int i3L2 = 0;
 int i4L2 = 0;
-int i5L2 = 0;
-int i6L2 = 0;
+
+int i1L3 = 0;
+int i2L3 = 0;
+int i3L3 = 0;
+int i4L3 = 0;
+
+int i1L4 = 0;
+int i2L4 = 0;
+int i3L4 = 0;
+int i4L4 = 0;
+
+int i1L5 = 0;
+int i2L5 = 0;
+int i3L5 = 0;
+int i4L5 = 0;
+
+int i1L6 = 0;
+int i2L6 = 0;
+int i3L6 = 0;
+int i4L6 = 0;
+
+
 boolean l1status = LOW;
 boolean l2status = LOW;
 boolean aStatus = LOW;
@@ -149,11 +167,11 @@ void loop() {
     moveLeg1();
     moveLeg3();
     moveLeg5();
-   /* if (l1status == HIGH) {   
+    if (l1status == HIGH) {   
       moveLeg2();
       moveLeg4();
       moveLeg6();
-    } */
+    } 
   }
   // Rotate left
   if (m == 3) {
@@ -226,14 +244,14 @@ void moveLeg1() {
   }
   // Move back to touch the ground
   if (i2L1 > 20 & i3L1 <= 10) {
-    s18.write(40 + i3L1 * 2);
-    s17.write(60 + i3L1 * 3);
+    s18.write(70 + i3L1 * 2);
+    s17.write(45 + i3L1 * 3);
     i3L1++;
   }
   // Stance phase - move leg while touching the ground
   // Rotate back to initial position
   if (i2L1 >= 30) {
-    s16.write(30 + 1.5*i4L1);
+    s16.write(15 + 1.5*i4L1);
     i4L1++;
     l1status = HIGH;
   }
@@ -243,7 +261,6 @@ void moveLeg1() {
     i2L1 = 0;
     i3L1 = 0;
     i4L1 = 0;
-    i5L1 = 0;
   }
   // Each iteration or step is executed in the main loop section where there is also a delay time for controlling the speed of movement
 }
@@ -259,12 +276,12 @@ void moveLeg2() {
 
   }
   if (i2L2 > 20 & i3L2 <= 10) {
-    s21.write(30 + i3L2 * 2);
-    s20.write(50 + i3L2 * 3);
+    s21.write(100 + i3L2 * 2);
+    s20.write(45 + i3L2 * 3);
     i3L2++;
   }
   if (i2L2 >= 30) {
-    s19.write(30 + 1.5*i4L2);
+    s19.write(15 + 1.5*i4L2);
     i4L2++;
   }
   if (i4L2 >= 30) {
@@ -272,78 +289,116 @@ void moveLeg2() {
     i2L2 = 0;
     i3L2 = 0;
     i4L2 = 0;
-    i5L2 = 0;
   }
 }
 
 void moveLeg3() {
-  if (i1L1 <= 10) {
-    s24.write(90 - i1L1 * 2);
-    s23.write(75 - i1L1 * 3);
+  if (i1L3 <= 10) {
+    s24.write(90 - i1L3 * 2);
+    s23.write(75 - i1L3 * 3);
+    i1L3++;
   }
-  if (i2L1 <= 30) {
-    s22.write(60 - 1.5*i2L1);
+  if (i2L3 <= 30) {
+    s22.write(60 - 1.5*i2L3);
+    i2L3++;
 
   }
-  if (i2L1 > 20 & i3L1 <= 10) {
-    s24.write(30 + i3L1 * 2);
-    s23.write(50 + i3L1 * 3);
+  if (i2L3 > 20 & i3L3 <= 10) {
+    s24.write(70 + i3L3 * 2);
+    s23.write(45 + i3L3 * 3);
+    i3L3++;
   }
-  if (i2L1 >= 30) {
-    s22.write(30 + 1.5*i4L1);
+  if (i2L3 >= 30) {
+    s22.write(15 + 1.5*i4L3);
+    i4L3++;
+  }
+  if (i4L3 >= 30) {
+    i1L3 = 0;
+    i2L3 = 0;
+    i3L3 = 0;
+    i4L3 = 0;
   }
 }
 
 void moveLeg4() {
-  if (i1L2 <= 10) {
-    s10.write(60 + i1L2 * 2);
-    s11.write(105 + i1L2 * 3);
+  if (i1L4 <= 10) {
+    s10.write(60 + i1L4 * 2);
+    s11.write(105 + i1L4 * 3);
+    i1L4++;
   }
-  if (i2L2 <= 30) {
-    s12.write(100 + 1.5*i2L2);
-
+  if (i2L4 <= 30) {
+    s12.write(100 + 1.5*i2L4);
+    i2L4++;
   }
-  if (i2L2 > 20 & i3L2 <= 10) {
-    s10.write(85 - i3L2 * 2);
-    s11.write(65 - i3L2 * 3);
+  if (i2L4 > 20 & i3L4 <= 10) {
+    s10.write(80 - i3L4 * 2);
+    s11.write(135 - i3L4 * 3);
+    i3L4++;
   }
-  if (i2L2 >= 30) {
-    s12.write(130 - 1.5*i4L2);
+  if (i2L4 >= 30) {
+    s12.write(145 - 1.5*i4L4);
+    i4L4++;
+  }
+  if (i4L4 >= 30) {
+    i1L4 = 0;
+    i2L4 = 0;
+    i3L4 = 0;
+    i4L4 = 0;
   }
 }
-//Some problem
+
 void moveLeg5() {
-  if (i1L1 <= 10) {
-    s7.write(80 + i1L1 * 2);
-    s8.write(105 + i1L1 * 3);
+  if (i1L5 <= 10) {
+    s7.write(80 + i1L5 * 2);
+    s8.write(105 + i1L5 * 3);
+    i1L5++;
   }
-  if (i2L1 <= 30) {
-    s9.write(60 + 1.5*i2L1);
+  if (i2L5 <= 30) {
+    s9.write(60 + 1.5*i2L5);
+    i2L5++;
 
   }
-  if (i2L1 > 20 & i3L1 <= 10) {
-    s7.write(100 - i3L1 * 2);
-    s8.write(80 - i3L1 * 3);
+  if (i2L5 > 20 & i3L5 <= 10) {
+    s7.write(100 - i3L5 * 2);
+    s8.write(135 - i3L5 * 3);
+    i3L5++;
   }
-  if (i2L1 >= 30) {
-    s9.write(90 - 1.5*i4L1);
+  if (i2L5 >= 30) {
+    s9.write(105 - 1.5*i4L5);
+    i4L5++;
+  }
+  if (i4L5 >= 30) {
+    i1L5 = 0;
+    i2L5 = 0;
+    i3L5 = 0;
+    i4L5 = 0;
   }
 }
 
 void moveLeg6() {
-  if (i1L2 <= 10) {
-    s1.write(90 + i1L2 * 2);
-    s2.write(0 + i1L2 * 3);
+  if (i1L6 <= 10) {
+    s1.write(90 + i1L6 * 2);
+    s2.write(0 + i1L6 * 3);
+    i1L6+;
   }
-  if (i2L2 <= 30) {
-    s3.write(60 + 1.5*i2L2);
+  if (i2L6 <= 30) {
+    s3.write(60 + 1.5*i2L6);
+    i2L6++;
   }
-  if (i2L2 > 20 & i3L2 <= 10) {
-    s1.write(110 - i3L2 * 2);
-    s2.write(30 - i3L2 * 3);
+  if (i2L6 > 20 & i3L6 <= 10) {
+    s1.write(110 - i3L6 * 2);
+    s2.write(30 - i3L6 * 3);
+    i3L6++;
   }
-  if (i2L2 >= 30) {
-    s3.write(90 - 1.5*i4L2);
+  if (i2L6 >= 30) {
+    s3.write(105 - 1.5*i4L6);
+    i4L6++;
+  }
+  if (i4L6 >= 30) {
+    i1L6 = 0;
+    i2L+ = 0;
+    i3L6 = 0;
+    i4L6 = 0;
   }
 }
 
