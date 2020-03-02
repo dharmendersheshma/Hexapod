@@ -1,7 +1,5 @@
 #include <Servo.h>
 
-#define trigPin 7
-#define echoPin 6
 #define ledB 10
 
 // Create servo object
@@ -69,8 +67,6 @@ int att = 0;
 int speedV = 30;
 
 void setup() {
-  pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
-  pinMode(echoPin, INPUT); // Sets the echoPin as an Input
   pinMode(ledB, OUTPUT);
 
   //Allocate servos to pins using attach fn
@@ -103,37 +99,37 @@ void setup() {
   // == Move to initial position
   
   // Leg 4
-  s10.write(65);
-  s11.write(35);
-  s12.write(40);
+  s10.write(60);
+  s11.write(105);
+  s12.write(100);
   // Leg 5
   s7.write(80);
-  s8.write(50);
-  s9.write(25);
+  s8.write(105);
+  s9.write(60);
   // Leg 6
-  s1.write(90);
-  s2.write(45);
+  s1.write(70);
+  s2.write(0);
   s3.write(60);
 
   // Leg 1
-  s18.write(60);
-  s17.write(90);
-  s16.write(100);
+  s18.write(90);
+  s17.write(75);
+  s16.write(60);
   // Leg 2
-  s21.write(50);
-  s20.write(85);
-  s19.write(75);
+  s21.write(120);
+  s20.write(75);
+  s19.write(60);
   // Leg 3
-  s24.write(50);
-  s23.write(80);
-  s22.write(80);
+  s24.write(90);
+  s23.write(75);
+  s22.write(60);
 
   delay(3000);
 }
 void loop() {
 
   // Change dataIn for different actions of robot
-    dataIn = 0;
+    dataIn = 2;
     if (dataIn == 2) {
       m = 2;           //Move forward
     }
@@ -153,11 +149,11 @@ void loop() {
     moveLeg1();
     moveLeg3();
     moveLeg5();
-    if (l1status == HIGH) {
+    if (l1status == HIGH) {   
       moveLeg2();
       moveLeg4();
       moveLeg6();
-    }
+    } 
   }
   // Rotate left
   if (m == 3) {
@@ -216,18 +212,17 @@ void loop() {
   
 
 void moveLeg1() {
-  // Swing phase - move leg though air - from initial to final position
+  // Swing phase - move leg through air - from initial to final position
   // Rise the leg
   if (i1L1 <= 10) {
-    s18.write(60 - i1L1 * 2);
-    s17.write(90 - i1L1 * 3);
+    s18.write(90 - i1L1 * 2);
+    s17.write(75 - i1L1 * 3);
     i1L1++;
   }
   // Rotate the leg
   if (i2L1 <= 30) {
-    s16.write(100 - i2L1);
+    s16.write(60 - 1.5*i2L1);
     i2L1++;
-
   }
   // Move back to touch the ground
   if (i2L1 > 20 & i3L1 <= 10) {
@@ -238,7 +233,7 @@ void moveLeg1() {
   // Stance phase - move leg while touching the ground
   // Rotate back to initial position
   if (i2L1 >= 30) {
-    s16.write(70 + i4L1);
+    s16.write(30 + 1.5*i4L1);
     i4L1++;
     l1status = HIGH;
   }
@@ -254,12 +249,12 @@ void moveLeg1() {
 }
 void moveLeg2() {
   if (i1L2 <= 10) {
-    s21.write(50 - i1L2 * 2);
-    s20.write(80 - i1L2 * 3);
+    s21.write(120 - i1L2 * 2);
+    s20.write(75 - i1L2 * 3);
     i1L2++;
   }
   if (i2L2 <= 30) {
-    s19.write(75 - i2L2);
+    s19.write(60 - 1.5*i2L2);
     i2L2++;
 
   }
@@ -269,7 +264,7 @@ void moveLeg2() {
     i3L2++;
   }
   if (i2L2 >= 30) {
-    s19.write(45 + i4L2);
+    s19.write(30 + 1.5*i4L2);
     i4L2++;
   }
   if (i4L2 >= 30) {
@@ -283,11 +278,11 @@ void moveLeg2() {
 
 void moveLeg3() {
   if (i1L1 <= 10) {
-    s24.write(50 - i1L1 * 2);
-    s23.write(80 - i1L1 * 3);
+    s24.write(90 - i1L1 * 2);
+    s23.write(75 - i1L1 * 3);
   }
   if (i2L1 <= 30) {
-    s22.write(80 - i2L1);
+    s22.write(60 - 1.5*i2L1);
 
   }
   if (i2L1 > 20 & i3L1 <= 10) {
@@ -295,17 +290,17 @@ void moveLeg3() {
     s23.write(50 + i3L1 * 3);
   }
   if (i2L1 >= 30) {
-    s22.write(50 + i4L1);
+    s22.write(30 + 1.5*i4L1);
   }
 }
 
 void moveLeg4() {
   if (i1L2 <= 10) {
-    s10.write(65 + i1L2 * 2);
-    s11.write(35 + i1L2 * 3);
+    s10.write(60 + i1L2 * 2);
+    s11.write(105 + i1L2 * 3);
   }
   if (i2L2 <= 30) {
-    s12.write(35 + i2L2);
+    s12.write(100 + 1.5*i2L2);
 
   }
   if (i2L2 > 20 & i3L2 <= 10) {
@@ -313,17 +308,17 @@ void moveLeg4() {
     s11.write(65 - i3L2 * 3);
   }
   if (i2L2 >= 30) {
-    s12.write(65 - i4L2);
+    s12.write(130 - 1.5*i4L2);
   }
 }
-
+//Some problem
 void moveLeg5() {
   if (i1L1 <= 10) {
     s7.write(80 + i1L1 * 2);
-    s8.write(50 + i1L1 * 3);
+    s8.write(105 + i1L1 * 3);
   }
   if (i2L1 <= 30) {
-    s9.write(30 + i2L1);
+    s9.write(60 + 1.5*i2L1);
 
   }
   if (i2L1 > 20 & i3L1 <= 10) {
@@ -331,24 +326,24 @@ void moveLeg5() {
     s8.write(80 - i3L1 * 3);
   }
   if (i2L1 >= 30) {
-    s9.write(60 - i4L1);
+    s9.write(90 - 1.5*i4L1);
   }
 }
 
 void moveLeg6() {
   if (i1L2 <= 10) {
     s1.write(90 + i1L2 * 2);
-    s2.write(45 + i1L2 * 3);
+    s2.write(0 + i1L2 * 3);
   }
   if (i2L2 <= 30) {
-    s3.write(60 + i2L2);
+    s3.write(60 + 1.5*i2L2);
   }
   if (i2L2 > 20 & i3L2 <= 10) {
     s1.write(110 - i3L2 * 2);
-    s2.write(75 - i3L2 * 3);
+    s2.write(30 - i3L2 * 3);
   }
   if (i2L2 >= 30) {
-    s3.write(90 - i4L2);
+    s3.write(90 - 1.5*i4L2);
   }
 }
 
@@ -623,30 +618,30 @@ void initialPosition() {
   attStatus = LOW;
 
   // Leg 4
-  s10.write(65);
-  s11.write(35);
-  s12.write(40);
+  s10.write(60);
+  s11.write(105);
+  s12.write(100);
   // Leg 5
-  s7.write(80);
-  s8.write(50);
-  s9.write(25);
+   s7.write(90);
+  s8.write(105);
+  s9.write(60);
   // Leg 6
-  s1.write(90);
-  s2.write(45);
+  s1.write(70);
+  s2.write(0);
   s3.write(60);
 
   // Leg 1
-  s18.write(60);
-  s17.write(90);
-  s16.write(100);
+  s18.write(90);
+  s17.write(75);
+  s16.write(60);
   // Leg 2
-  s21.write(50);
-  s20.write(80);
-  s19.write(75);
+  s21.write(120);
+  s20.write(75);
+  s19.write(60);
   // Leg 3
-  s24.write(50);
-  s23.write(80);
-  s22.write(80);
+  s24.write(90);
+  s23.write(75);
+  s22.write(60);
 
   i1L1 = 0;
   i2L1 = 0;
