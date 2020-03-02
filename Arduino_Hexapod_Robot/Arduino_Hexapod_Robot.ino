@@ -129,7 +129,7 @@ void setup() {
 void loop() {
 
   // Change dataIn for different actions of robot
-    dataIn = 2;
+    dataIn = 2;         //dataIn = 0 for standing position
     if (dataIn == 2) {
       m = 2;           //Move forward
     }
@@ -149,11 +149,11 @@ void loop() {
     moveLeg1();
     moveLeg3();
     moveLeg5();
-    if (l1status == HIGH) {   
+   /* if (l1status == HIGH) {   
       moveLeg2();
       moveLeg4();
       moveLeg6();
-    } 
+    } */
   }
   // Rotate left
   if (m == 3) {
